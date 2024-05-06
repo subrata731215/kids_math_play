@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class Buttons extends StatelessWidget {
   final String buttonText;
   final Function() onp;
-  Color? buttonColor;
+  final Color? buttonColor;
 
-  Buttons(
+  const Buttons(
       {super.key,
       required this.buttonText,
       required this.onp,
@@ -16,18 +16,23 @@ class Buttons extends StatelessWidget {
     return InkWell(
       onTap: onp,
       child: Container(
+        height: 40,
+        width: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: buttonColor,
         ),
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(5),
         child: Center(
           child: Text(
             buttonText,
-            style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+            style: textStyle.copyWith(fontSize: 40),
           ),
         ),
       ),
     );
   }
 }
+
+TextStyle textStyle = const TextStyle(
+    fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black);
