@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import '../mathgame/utils.dart';
 
 class MyChip extends StatelessWidget {
@@ -29,7 +28,7 @@ class MyChip extends StatelessWidget {
                 style: textStyle.copyWith(color: Colors.teal),
               ),
               const SizedBox(width: 30),
-              Lottie.asset('assets/lottie/arrow.json', height: 30, width: 90)
+              //Lottie.asset('assets/lottie/arrow.json', height: 30, width: 90)
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/homePage/homeUtils.dart';
+import 'package:kids_math_play/calculator/calculatorui.dart';
+import 'package:kids_math_play/homePage/homeutils.dart';
 import 'package:kids_math_play/mathgame/ui.dart';
-import 'package:lottie/lottie.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,12 +19,15 @@ class HomePage extends StatelessWidget {
               MyChip(
                 text: 'Calculator',
                 icon: Icons.calculate_outlined,
-                onp: () {},
+                onp: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CalculatorUi()));
+                },
               ),
-              Lottie.asset(
-                'assets/lottie/100_percent.json',
-                fit: BoxFit.fill,
-              ),
+              // Lottie.asset(
+              //   'assets/lottie/100_percent.json',
+              //   fit: BoxFit.fill,
+              // ),
               MyChip(
                 text: 'Math Game',
                 icon: Icons.games_outlined,

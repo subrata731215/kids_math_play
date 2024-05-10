@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:kids_math_play/mathgame/utils.dart';
-import 'package:lottie/lottie.dart';
 import 'package:reactiv/reactiv.dart';
 import 'controller.dart';
 
@@ -98,7 +97,7 @@ class MathUi extends ReactiveStateWidget<MathController> {
                           ],
                         );
                       }),
-                  Expanded(child: Lottie.asset('assets/lottie/birds.json')),
+                  // Expanded(child: Lottie.asset('assets/lottie/birds.json')),
                 ],
               ),
             ),
@@ -112,7 +111,7 @@ class MathUi extends ReactiveStateWidget<MathController> {
                     crossAxisCount: 4),
                 itemBuilder: (context, index) {
                   if (buttonText[index] == 'C') {
-                    return Buttons(
+                    return MyButtons(
                       textColor: Colors.green,
                       onp: () {
                         if (buttonText.isNotEmpty) {
@@ -122,7 +121,7 @@ class MathUi extends ReactiveStateWidget<MathController> {
                       buttonText: buttonText[index],
                     );
                   } else if (buttonText[index] == 'Del') {
-                    return Buttons(
+                    return MyButtons(
                       textColor: Colors.lightGreenAccent,
                       onp: () {
                         if (controller.userAnswer.value.isNotEmpty) {
@@ -137,7 +136,7 @@ class MathUi extends ReactiveStateWidget<MathController> {
                       buttonText: buttonText[index],
                     );
                   } else if (buttonText[index] == '=') {
-                    return Buttons(
+                    return MyButtons(
                       textColor: Colors.white,
                       onp: () {
                         controller.questionAnswerList.add(QuestionAnswerModel(
@@ -157,7 +156,7 @@ class MathUi extends ReactiveStateWidget<MathController> {
                       buttonText: buttonText[index],
                     );
                   } else if (buttonText[index] == '>') {
-                    return Buttons(
+                    return MyButtons(
                       textColor: Colors.cyan,
                       onp: () {
                         controller.firstNo.value = Random().nextInt(10);
@@ -167,7 +166,7 @@ class MathUi extends ReactiveStateWidget<MathController> {
                       buttonText: buttonText[index],
                     );
                   } else {
-                    return Buttons(
+                    return MyButtons(
                       onp: () {
                         if (controller.userAnswer.value == '?') {
                           controller.userAnswer.value = '';

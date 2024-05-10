@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:kids_math_play/mathgame/controller.dart';
 import 'package:reactiv/reactiv.dart';
 
-class Buttons extends StatelessWidget {
+class MyButtons extends StatelessWidget {
   final String buttonText;
   final Function() onp;
   final Color? textColor;
 
-  const Buttons(
+  const MyButtons(
       {super.key,
       required this.buttonText,
       required this.onp,
@@ -17,23 +17,29 @@ class Buttons extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onp,
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            gradient: const LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.blue,
-                  Colors.green,
-                  Colors.red,
-                  Colors.yellow
-                ])),
-        margin: const EdgeInsets.all(5),
-        child: Center(
-          child: Text(
-            buttonText,
-            style: textStyle.copyWith(fontSize: 40, color: textColor),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                gradient: const LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.blue,
+                      Colors.green,
+                      Colors.red,
+                      Colors.yellow
+                    ])),
+            margin: const EdgeInsets.all(5),
+            child: Center(
+              child: Text(
+                buttonText,
+                style: textStyle.copyWith(fontSize: 40, color: textColor),
+              ),
+            ),
           ),
         ),
       ),

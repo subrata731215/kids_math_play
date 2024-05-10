@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:kids_math_play/homePage/homepage.dart';
-import 'package:kids_math_play/mathgame/ui.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyAAOWjVv6SGWHeFF4pvJ52t_whlBsyn8as",
+          appId: "1:691758258540:android:003e60227849ca1ded3b49",
+          messagingSenderId: "calculator-with-chatapp.appspot.com",
+          projectId: "calculator-with-chatapp"));
   runApp(const MyApp());
 }
 

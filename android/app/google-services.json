@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "691758258540",
+    "project_id": "calculator-with-chatapp",
+    "storage_bucket": "calculator-with-chatapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691758258540:android:003e60227849ca1ded3b49",
+        "android_client_info": {
+          "package_name": "com.example.kids_math_play"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAOWjVv6SGWHeFF4pvJ52t_whlBsyn8as"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
