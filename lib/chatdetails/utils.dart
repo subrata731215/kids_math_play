@@ -57,3 +57,11 @@ class MyTapButton extends StatelessWidget {
     );
   }
 }
+
+Future exceptionDialog(BuildContext context, String e) {
+  return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            title: Text(e, textAlign: TextAlign.center),
+          ));
+}

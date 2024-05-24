@@ -21,11 +21,15 @@ class SignUpPage extends ReactiveStateWidget<ChatPageController> {
   final TextEditingController rePasswordTEC = TextEditingController();
 
   void signUpUser(BuildContext context) async {
-    await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(
-            email: emailTEC.text, password: rePasswordTEC.text)
-        .then((value) => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignInPage())));
+    try {
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: emailTEC.text, password: rePasswordTEC.text)
+          .then((value) => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SignInPage())));
+    } on FirebaseAuthException catch (e) {
+      await exceptionDialog(context, e.toString());
+    }
   }
 
   @override

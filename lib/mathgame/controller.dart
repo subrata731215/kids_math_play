@@ -1,7 +1,10 @@
 import 'dart:math';
+import 'package:flutter/material.dart';
 import 'package:reactiv/reactiv.dart';
 
 class MathController extends ReactiveController {
+  ReactiveInt digit = ReactiveInt(1);
+
   ReactiveString userAnswer = ReactiveString('?');
 
   ReactiveInt firstNo = ReactiveInt(Random().nextInt(10));
@@ -12,6 +15,22 @@ class MathController extends ReactiveController {
 
   String randMathSign() {
     return mathSign.value = mathSignList[Random().nextInt(3)];
+  }
+
+  void digitCheck(){
+    if (digit.value == 1) {
+      firstNo.value = Random().nextInt(10);
+      secondNo.value = Random().nextInt(10);
+    } else if (digit.value == 2) {
+      firstNo.value = Random().nextInt(100);
+      secondNo.value = Random().nextInt(100);
+    } else if (digit.value == 3) {
+      firstNo.value = Random().nextInt(1000);
+      secondNo.value = Random().nextInt(1000);
+    } else {
+      firstNo.value = Random().nextInt(10000);
+      secondNo.value = Random().nextInt(10000);
+    }
   }
 
   bool ansCheck() {
@@ -31,6 +50,28 @@ class MathController extends ReactiveController {
     return false;
   }
 
+  Icon checkedIcon() {
+    if (ansCheck()) {
+      return const Icon(
+        Icons.check,
+        color: Colors.white,
+        size: 25,
+      );
+    }
+    return const Icon(
+      Icons.close,
+      color: Colors.white,
+      size: 25,
+    );
+  }
+
+  Color tileColorChecked() {
+    if (ansCheck()) {
+      return Colors.green;
+    }
+    return Colors.red;
+  }
+
   ReactiveInt correctAnswer = ReactiveInt(0);
   ReactiveInt wrongAnswer = ReactiveInt(0);
 
@@ -46,7 +87,7 @@ class MathController extends ReactiveController {
     if (button.isEmpty) {
       userAnswer.value = '?';
     }
-    if (userAnswer.value.length < 5) {
+    if (userAnswer.value.length < 15) {
       userAnswer.value += button;
     }
   }
@@ -59,10 +100,14 @@ class QuestionAnswerModel {
   String mathSign;
   int secondNoo;
   String answer;
+  Icon icon;
+  Color tileColor;
 
   QuestionAnswerModel(
       {required this.firstNoo,
       required this.mathSign,
       required this.secondNoo,
-      required this.answer});
+      required this.answer,
+      required this.icon,
+      required this.tileColor});
 }

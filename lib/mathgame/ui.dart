@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:kids_math_play/mathgame/utils.dart';
 import 'package:reactiv/reactiv.dart';
@@ -17,6 +16,7 @@ class MathUi extends ReactiveStateWidget<MathController> {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       appBar: AppBar(
+        toolbarHeight: 90,
         backgroundColor: Colors.amberAccent[700],
         centerTitle: true,
         title: Text(
@@ -56,45 +56,67 @@ class MathUi extends ReactiveStateWidget<MathController> {
               ])),
               child: Column(
                 children: [
+                  Observer(
+                      listenable: controller.digit,
+                      listener: (digit) {
+                        return Align(
+                          alignment: Alignment.topLeft,
+                          child: DropdownButton<int>(
+                            value: controller.digit.value,
+                            onChanged: (nVal) {
+                              controller.digit.value = nVal!;
+                            },
+                            items: const [
+                              DropdownMenuItem<int>(value: 1, child: Text('Easy')),
+                              DropdownMenuItem<int>(value: 2, child: Text('Medium')),
+                              DropdownMenuItem<int>(value: 3, child: Text('Hard')),
+                              DropdownMenuItem<int>(value: 4, child: Text('Extreme')),
+                            ],
+                          ),
+                        );
+                      }),
                   const SizedBox(height: 20),
                   Observer2(
                       listenable: controller.firstNo,
                       listenable2: controller.secondNo,
                       listener: (fno, sno) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(controller.firstNo.value.toString(),
-                                textAlign: TextAlign.center,
-                                style: textStyle.copyWith(fontSize: 45)),
-                            const SizedBox(width: 20),
-                            Text(controller.randMathSign(),
-                                style: textStyle.copyWith(fontSize: 45)),
-                            const SizedBox(width: 20),
-                            Text(controller.secondNo.value.toString(),
-                                textAlign: TextAlign.center,
-                                style: textStyle.copyWith(fontSize: 45)),
-                            const SizedBox(width: 20),
-                            Text('=', style: textStyle.copyWith(fontSize: 45)),
-                            const SizedBox(width: 20),
-                            Observer(
-                                listenable: controller.userAnswer,
-                                listener: (answer) {
-                                  return Flexible(
-                                    child: Container(
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white70,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Text(answer,
-                                          textAlign: TextAlign.center,
-                                          style:
-                                              textStyle.copyWith(fontSize: 45)),
-                                    ),
-                                  );
-                                }),
-                          ],
+                        return Flexible(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(controller.firstNo.value.toString(),
+                                  textAlign: TextAlign.center,
+                                  style: textStyle.copyWith(fontSize: 30)),
+                              const SizedBox(width: 20),
+                              Text(controller.randMathSign(),
+                                  style: textStyle.copyWith(fontSize: 30)),
+                              const SizedBox(width: 20),
+                              Text(controller.secondNo.value.toString(),
+                                  textAlign: TextAlign.center,
+                                  style: textStyle.copyWith(fontSize: 30)),
+                              const SizedBox(width: 20),
+                              Text('=',
+                                  style: textStyle.copyWith(fontSize: 30)),
+                              const SizedBox(width: 20),
+                              Observer(
+                                  listenable: controller.userAnswer,
+                                  listener: (answer) {
+                                    return Flexible(
+                                      child: Container(
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white70,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Text(answer,
+                                            textAlign: TextAlign.center,
+                                            style: textStyle.copyWith(
+                                                fontSize: 30)),
+                                      ),
+                                    );
+                                  }),
+                            ],
+                          ),
                         );
                       }),
                   // Expanded(child: Lottie.asset('assets/lottie/birds.json')),
@@ -139,32 +161,39 @@ class MathUi extends ReactiveStateWidget<MathController> {
                     return MyButtons(
                       textColor: Colors.white,
                       onp: () {
-                        controller.questionAnswerList.add(QuestionAnswerModel(
-                            firstNoo: controller.firstNo.value,
-                            mathSign: controller.mathSign.value,
-                            secondNoo: controller.secondNo.value,
-                            answer: controller.userAnswer.value));
                         if (controller.userAnswer.value != '?') {
+                          controller.questionAnswerList.add(
+                            QuestionAnswerModel(
+                                firstNoo: controller.firstNo.value,
+                                mathSign: controller.mathSign.value,
+                                secondNoo: controller.secondNo.value,
+                                answer: controller.userAnswer.value,
+                                icon: controller.checkedIcon(),
+                                tileColor: controller.tileColorChecked()),
+                          );
                           shownDialog(context);
                           controller.countCheck();
-                          controller.firstNo.value = Random().nextInt(10);
-                          controller.secondNo.value = Random().nextInt(10);
-
+                          controller.digitCheck();
                           controller.userAnswer.value = '?';
                         }
                       },
                       buttonText: buttonText[index],
                     );
-                  } else if (buttonText[index] == '>') {
-                    return MyButtons(
-                      textColor: Colors.cyan,
-                      onp: () {
-                        controller.firstNo.value = Random().nextInt(10);
-                        controller.secondNo.value = Random().nextInt(10);
-                        controller.userAnswer.value = '?';
-                      },
-                      buttonText: buttonText[index],
-                    );
+                  } else if (buttonText[index] == 'skip') {
+                    return Observer3(
+                        listenable: controller.firstNo,
+                        listenable2: controller.secondNo,
+                        listenable3: controller.digit,
+                        listener: (fno, sno, digi) {
+                          return MyButtons(
+                            textColor: Colors.cyan,
+                            onp: () {
+                              controller.digitCheck();
+                              controller.userAnswer.value = '?';
+                            },
+                            buttonText: buttonText[index],
+                          );
+                        });
                   } else {
                     return MyButtons(
                       onp: () {
@@ -209,7 +238,7 @@ class MathUi extends ReactiveStateWidget<MathController> {
     '7',
     '8',
     '9',
-    '>',
+    'skip',
     '0',
     '.',
     '-',

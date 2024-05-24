@@ -28,12 +28,15 @@ class SignInPage extends ReactiveStateWidget<ChatPageController> {
             child: CircularProgressIndicator(),
           );
         });
-
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-            email: emailTEC.text, password: passwordTEC.text)
-        .then((value) => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ChatHomePage())));
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: emailTEC.text, password: passwordTEC.text)
+          .then((value) => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ChatHomePage())));
+    } on FirebaseAuthException catch (e) {
+      await exceptionDialog(context, e.toString());
+    }
 
     Navigator.pop(context);
   }
