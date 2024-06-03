@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/chatdetails/signin_page.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:kids_math_play/homePage/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:kids_math_play/mathgame/models/questionanswer.dart';
+import 'package:kids_math_play/mathgame/services/question_answer_services.dart';
+import 'package:kids_math_play/mathgame/ui.dart';
 
 void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(QuestionAnswerAdapter());
+  await QuestionAnswerServices().openBox();
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: const FirebaseOptions(
@@ -19,9 +26,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SignInPage(),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: MathUi()
+        //HomePage(),
+        );
   }
 }

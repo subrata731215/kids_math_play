@@ -67,10 +67,14 @@ class MathUi extends ReactiveStateWidget<MathController> {
                               controller.digit.value = nVal!;
                             },
                             items: const [
-                              DropdownMenuItem<int>(value: 1, child: Text('Easy')),
-                              DropdownMenuItem<int>(value: 2, child: Text('Medium')),
-                              DropdownMenuItem<int>(value: 3, child: Text('Hard')),
-                              DropdownMenuItem<int>(value: 4, child: Text('Extreme')),
+                              DropdownMenuItem<int>(
+                                  value: 1, child: Text('Easy')),
+                              DropdownMenuItem<int>(
+                                  value: 2, child: Text('Medium')),
+                              DropdownMenuItem<int>(
+                                  value: 3, child: Text('Hard')),
+                              DropdownMenuItem<int>(
+                                  value: 4, child: Text('Extreme')),
                             ],
                           ),
                         );

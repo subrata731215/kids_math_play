@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:kids_math_play/mathgame/services/question_answer_services.dart';
 import 'package:reactiv/reactiv.dart';
 
 class MathController extends ReactiveController {
@@ -17,7 +18,7 @@ class MathController extends ReactiveController {
     return mathSign.value = mathSignList[Random().nextInt(3)];
   }
 
-  void digitCheck(){
+  void digitCheck() {
     if (digit.value == 1) {
       firstNo.value = Random().nextInt(10);
       secondNo.value = Random().nextInt(10);
@@ -93,6 +94,17 @@ class MathController extends ReactiveController {
   }
 
   List<QuestionAnswerModel> questionAnswerList = [];
+  // QuestionAnswerServices questionAnswerServices = QuestionAnswerServices();
+  //
+  // Future<void> loadData() async {
+  //   questionAnswerList = await questionAnswerServices.getData();
+  // }
+  //
+  // @override
+  // void onInit() {
+  //   loadData();
+  //   super.onInit();
+  // }
 }
 
 class QuestionAnswerModel {
