@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/chatdetails/authpage.dart';
-import 'package:kids_math_play/chatdetails/utils/userdetails/user_details.dart';
+import 'package:kids_math_play/chatdetails/authentication/authpage.dart';
+
+import 'userdetails/user_details.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});

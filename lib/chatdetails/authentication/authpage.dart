@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/chatdetails/utils/signin_page.dart';
-import 'chathomepage.dart';
+import 'package:kids_math_play/chatdetails/authentication/signin_page.dart';
+import '../chat_homepage/chathomepage.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
