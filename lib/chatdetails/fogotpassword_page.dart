@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/chatdetails/utils.dart';
+import 'package:kids_math_play/chatdetails/utils/utils.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   ForgotPasswordPage({super.key});

@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kids_math_play/chatdetails/chatpagecontroller.dart';
-import 'package:kids_math_play/chatdetails/signin_page.dart';
-import 'package:kids_math_play/chatdetails/utils.dart';
+import 'package:kids_math_play/chatdetails/utils/signin_page.dart';
+import 'package:kids_math_play/chatdetails/utils/utils.dart';
 import 'package:reactiv/reactiv.dart';
-import 'package:reactiv/state_management/widgets/observer.dart';
-import 'package:reactiv/views/bind_controller.dart';
 
 class SignUpPage extends ReactiveStateWidget<ChatPageController> {
   @override

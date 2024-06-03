@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/chatdetails/drawer.dart';
+import 'package:kids_math_play/chatdetails/utils/drawer.dart';
 import 'package:kids_math_play/mathgame/utils.dart';
 
 class ChatHomePage extends StatelessWidget {
