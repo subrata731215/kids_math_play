@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kids_math_play/chatdetails/authpage.dart';
+import 'package:kids_math_play/chatdetails/utils/userdetails/user_details.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -32,6 +33,14 @@ class MyDrawer extends StatelessWidget {
             title: const Text('S E T T I N G'),
             onTap: () {
               Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('U S E R S'),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const UserDetails()));
             },
           ),
           SizedBox(height: MediaQuery.of(context).size.height / 5),

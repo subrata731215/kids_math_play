@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:kids_math_play/chatdetails/chathomepage.dart';
 import 'package:kids_math_play/chatdetails/chatpagecontroller.dart';
 import 'package:kids_math_play/chatdetails/fogotpassword_page.dart';
-import 'package:kids_math_play/chatdetails/signup_page.dart';
-import 'package:kids_math_play/chatdetails/utils.dart';
+import 'package:kids_math_play/chatdetails/utils/signup_page.dart';
+import 'package:kids_math_play/chatdetails/utils/utils.dart';
 import 'package:kids_math_play/mathgame/utils.dart';
 import 'package:reactiv/reactiv.dart';
 
