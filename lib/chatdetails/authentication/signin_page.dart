@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/chatdetails/chathomepage.dart';
-import 'package:kids_math_play/chatdetails/chatpagecontroller.dart';
-import 'package:kids_math_play/chatdetails/fogotpassword_page.dart';
-import 'package:kids_math_play/chatdetails/utils/signup_page.dart';
-import 'package:kids_math_play/chatdetails/utils/utils.dart';
+import 'package:kids_math_play/chatdetails/chat_homepage/chathomepage.dart';
+import 'package:kids_math_play/chatdetails/controller/chatpagecontroller.dart';
+import 'package:kids_math_play/chatdetails/authentication/fogotpassword_page.dart';
+import 'package:kids_math_play/chatdetails/authentication/signup_page.dart';
+import 'package:kids_math_play/chatdetails/utils.dart';
 import 'package:kids_math_play/mathgame/utils.dart';
 import 'package:reactiv/reactiv.dart';
+
+import '../all_method/all_method.dart';
 
 class SignInPage extends ReactiveStateWidget<ChatPageController> {
   @override
@@ -19,27 +21,6 @@ class SignInPage extends ReactiveStateWidget<ChatPageController> {
 
   final TextEditingController emailTEC = TextEditingController();
   final TextEditingController passwordTEC = TextEditingController();
-
-  void signInUser(BuildContext context) async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
-    try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: emailTEC.text, password: passwordTEC.text)
-          .then((value) => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => ChatHomePage())));
-    } on FirebaseAuthException catch (e) {
-      await exceptionDialog(context, e.toString());
-    }
-
-    Navigator.pop(context);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +77,7 @@ class SignInPage extends ReactiveStateWidget<ChatPageController> {
               MyTapButton(
                   buttonText: 'Sign In',
                   onp: () {
-                    signInUser(context);
+                    signInUser(context, emailTEC.text, passwordTEC.text);
                   }),
               const SizedBox(height: 40),
               GestureDetector(

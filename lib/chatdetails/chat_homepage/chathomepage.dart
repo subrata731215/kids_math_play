@@ -1,5 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/chatdetails/utils/drawer.dart';
+import 'package:kids_math_play/chatdetails/drawer.dart';
 import 'package:kids_math_play/mathgame/utils.dart';
 
 class ChatHomePage extends StatelessWidget {
@@ -16,6 +17,7 @@ class ChatHomePage extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        body: Center(child: Text('Log In')));
+        body: Center(
+            child: Text(FirebaseAuth.instance.currentUser!.email.toString())));
   }
 }

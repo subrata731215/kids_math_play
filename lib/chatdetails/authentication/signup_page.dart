@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/chatdetails/chatpagecontroller.dart';
-import 'package:kids_math_play/chatdetails/utils/signin_page.dart';
-import 'package:kids_math_play/chatdetails/utils/utils.dart';
+import 'package:kids_math_play/chatdetails/controller/chatpagecontroller.dart';
+import 'package:kids_math_play/chatdetails/authentication/signin_page.dart';
+import 'package:kids_math_play/chatdetails/utils.dart';
 import 'package:reactiv/reactiv.dart';
+
+import '../all_method/all_method.dart';
 
 class SignUpPage extends ReactiveStateWidget<ChatPageController> {
   @override
@@ -17,18 +20,6 @@ class SignUpPage extends ReactiveStateWidget<ChatPageController> {
   final TextEditingController emailTEC = TextEditingController();
   final TextEditingController passwordTEC = TextEditingController();
   final TextEditingController rePasswordTEC = TextEditingController();
-
-  void signUpUser(BuildContext context) async {
-    try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: emailTEC.text, password: rePasswordTEC.text)
-          .then((value) => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SignInPage())));
-    } on FirebaseAuthException catch (e) {
-      await exceptionDialog(context, e.toString());
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +69,8 @@ class SignUpPage extends ReactiveStateWidget<ChatPageController> {
               MyTapButton(
                   buttonText: 'Sign Up',
                   onp: () {
-                    signUpUser(context);
+                    signUpUser(context, emailTEC.text, passwordTEC.text);
+                    addToFireStoreData(emailTEC.text, passwordTEC.text);
                   }),
               const SizedBox(height: 40),
               GestureDetector(

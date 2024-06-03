@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:kids_math_play/chatdetails/authpage.dart';
+import 'package:kids_math_play/chatdetails/authentication/authpage.dart';
 import 'package:kids_math_play/homePage/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:kids_math_play/mathgame/models/questionanswer.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(debugShowCheckedModeBanner: false, home: AuthPage()
+    return const MaterialApp(debugShowCheckedModeBanner: false, home: HomePage()
         //HomePage(),
         );
   }
