@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/mathgame/utils.dart';
+import '../utils/textstyle.dart';
 
 class MyTextField extends StatelessWidget {
   final String hintText;

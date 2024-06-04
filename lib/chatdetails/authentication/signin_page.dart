@@ -1,13 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/chatdetails/chat_homepage/chathomepage.dart';
 import 'package:kids_math_play/chatdetails/controller/chatpagecontroller.dart';
 import 'package:kids_math_play/chatdetails/authentication/fogotpassword_page.dart';
 import 'package:kids_math_play/chatdetails/authentication/signup_page.dart';
 import 'package:kids_math_play/chatdetails/utils.dart';
-import 'package:kids_math_play/mathgame/utils.dart';
 import 'package:reactiv/reactiv.dart';
-
+import '../../utils/textstyle.dart';
 import '../all_method/all_method.dart';
 
 class SignInPage extends ReactiveStateWidget<ChatPageController> {

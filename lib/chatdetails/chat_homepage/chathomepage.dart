@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kids_math_play/chatdetails/drawer.dart';
-import 'package:kids_math_play/mathgame/utils.dart';
+import '../../utils/textstyle.dart';
 
 class ChatHomePage extends StatelessWidget {
   const ChatHomePage({super.key});

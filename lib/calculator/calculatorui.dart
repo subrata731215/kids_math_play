@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kids_math_play/calculator/calculatorcontroller.dart';
 import 'package:kids_math_play/chatdetails/authentication/authpage.dart';
-import 'package:kids_math_play/mathgame/utils.dart';
 import 'package:reactiv/reactiv.dart';
+import '../mathgame/utils/buttons.dart';
+import '../utils/textstyle.dart';
 
 class CalculatorUi extends ReactiveStateWidget<CalculatorController> {
   @override
