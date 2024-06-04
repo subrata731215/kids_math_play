@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../mathgame/utils.dart';
+import '../utils/textstyle.dart';
 
 class MyChip extends StatelessWidget {
   final String text;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kids_math_play/mathgame/utils.dart';
+import 'package:kids_math_play/mathgame/utils/buttons.dart';
+import 'package:kids_math_play/mathgame/utils/circlecount_button.dart';
 import 'package:reactiv/reactiv.dart';
+import '../utils/textstyle.dart';
 import 'controller.dart';
 
 class MathUi extends ReactiveStateWidget<MathController> {
@@ -166,15 +168,14 @@ class MathUi extends ReactiveStateWidget<MathController> {
                       textColor: Colors.white,
                       onp: () {
                         if (controller.userAnswer.value != '?') {
-                          controller.questionAnswerList.add(
-                            QuestionAnswerModel(
-                                firstNoo: controller.firstNo.value,
-                                mathSign: controller.mathSign.value,
-                                secondNoo: controller.secondNo.value,
-                                answer: controller.userAnswer.value,
-                                icon: controller.checkedIcon(),
-                                tileColor: controller.tileColorChecked()),
-                          );
+                          controller.questionAnswerList.add(QuestionAnswerModel(
+                              firstNoo: controller.firstNo.value,
+                              mathSign: controller.mathSign.value,
+                              secondNoo: controller.secondNo.value,
+                              answer: controller.userAnswer.value,
+                              icon: controller.checkedIcon(),
+                              tileColor: controller.tileColorChecked()));
+
                           shownDialog(context);
                           controller.countCheck();
                           controller.digitCheck();
