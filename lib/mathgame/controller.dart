@@ -2,8 +2,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:reactiv/reactiv.dart';
 
-
 class MathController extends ReactiveController {
+  int randomUpTo(int upTo) {
+    return Random().nextInt(upTo);
+  }
+
+
+
   ReactiveInt digit = ReactiveInt(1);
 
   ReactiveString userAnswer = ReactiveString('?');
@@ -11,26 +16,26 @@ class MathController extends ReactiveController {
   ReactiveInt firstNo = ReactiveInt(Random().nextInt(10));
   ReactiveInt secondNo = ReactiveInt(Random().nextInt(10));
 
-  List<String> mathSignList = ['+', '-', 'x'];
+  List<String> mathSignList = ['+', '-', 'x', '/'];
   ReactiveString mathSign = ReactiveString('');
 
   String randMathSign() {
-    return mathSign.value = mathSignList[Random().nextInt(3)];
+    return mathSign.value = mathSignList[randomUpTo(4)];
   }
 
   void digitCheck() {
     if (digit.value == 1) {
-      firstNo.value = Random().nextInt(10);
-      secondNo.value = Random().nextInt(10);
+      firstNo.value = randomUpTo(10);
+      secondNo.value = randomUpTo(10);
     } else if (digit.value == 2) {
-      firstNo.value = Random().nextInt(100);
-      secondNo.value = Random().nextInt(100);
+      firstNo.value = randomUpTo(100);
+      secondNo.value = randomUpTo(100);
     } else if (digit.value == 3) {
-      firstNo.value = Random().nextInt(1000);
-      secondNo.value = Random().nextInt(1000);
+      firstNo.value = randomUpTo(1000);
+      secondNo.value = randomUpTo(1000);
     } else {
-      firstNo.value = Random().nextInt(10000);
-      secondNo.value = Random().nextInt(10000);
+      firstNo.value = randomUpTo(10000);
+      secondNo.value = randomUpTo(10000);
     }
   }
 
@@ -45,6 +50,10 @@ class MathController extends ReactiveController {
       }
     } else if (mathSign.value == 'x') {
       if (firstNo.value * secondNo.value == int.parse(userAnswer.value)) {
+        return true;
+      }
+    } else if (mathSign.value == '/') {
+      if (firstNo.value / secondNo.value == double.parse(userAnswer.value)) {
         return true;
       }
     }

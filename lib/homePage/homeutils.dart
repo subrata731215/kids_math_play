@@ -13,23 +13,26 @@ class MyChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onp,
-      child: Card(
-        color: Colors.blueGrey[100],
-        margin: const EdgeInsets.all(10),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon, size: 40),
-              const SizedBox(width: 30),
-              Text(
-                text,
-                style: textStyle.copyWith(color: Colors.teal),
-              ),
-              const SizedBox(width: 30),
-              //Lottie.asset('assets/lottie/arrow.json', height: 30, width: 90)
-            ],
+      child: SizedBox(
+        width: 300,
+        child: Card(
+          color: Colors.blueGrey[100],
+          margin: const EdgeInsets.all(10),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, size: 40),
+                const SizedBox(width: 30),
+                Text(
+                  text,
+                  style: textStyle.copyWith(color: Colors.teal),
+                ),
+                const SizedBox(width: 30),
+                //Lottie.asset('assets/lottie/arrow.json', height: 30, width: 90)
+              ],
+            ),
           ),
         ),
       ),

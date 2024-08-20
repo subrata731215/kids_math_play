@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kids_math_play/calculator/calculatorcontroller.dart';
-import 'package:kids_math_play/chatdetails/authentication/authpage.dart';
 import 'package:reactiv/reactiv.dart';
 import '../mathgame/utils/buttons.dart';
 import '../utils/textstyle.dart';
@@ -13,17 +12,12 @@ class CalculatorUi extends ReactiveStateWidget<CalculatorController> {
 
   CalculatorUi({super.key});
 
-  void secretChatDetailsOpen(BuildContext context) {
-    if (controller.userText.value == '731215') {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const AuthPage()));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         centerTitle: true,
         title: Text(
           'Calculator',
@@ -33,8 +27,13 @@ class CalculatorUi extends ReactiveStateWidget<CalculatorController> {
       body: Column(
         children: [
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: const BoxDecoration(
+                  color: Colors.brown,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30))),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -67,54 +66,50 @@ class CalculatorUi extends ReactiveStateWidget<CalculatorController> {
           ),
           Expanded(
             flex: 2,
-            child: Container(
-              color: Colors.deepPurpleAccent,
-              child: GridView.builder(
-                  itemCount: buttonText.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4),
-                  itemBuilder: (context, index) {
-                    if (buttonText[index] == 'C') {
-                      return MyButtons(
+            child: GridView.builder(
+                itemCount: buttonText.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount:  4),
+                itemBuilder: (context, index) {
+                  if (buttonText[index] == 'C') {
+                    return MyButtons(
+                      buttonText: buttonText[index],
+                      onp: () {
+                        controller.userText.value = '';
+                        controller.userAnswer.value = '0';
+                      },
+                      textColor: Colors.white,
+                    );
+                  } else if (buttonText[index] == 'Del') {
+                    return MyButtons(
+                      buttonText: buttonText[index],
+                      onp: () {
+                        if (controller.userText.value.isNotEmpty) {
+                          controller.userText.value = controller.userText.value
+                              .substring(
+                                  0, controller.userText.value.length - 1);
+                        }
+                      },
+                      textColor: Colors.white,
+                    );
+                  } else if (buttonText[index] == '=' ||
+                      buttonText[index] == 'Ans') {
+                    return MyButtons(
+                      buttonText: buttonText[index],
+                      onp: () {
+                        controller.mathCal();
+                      },
+                      textColor: Colors.cyanAccent,
+                    );
+                  } else {
+                    return MyButtons(
                         buttonText: buttonText[index],
                         onp: () {
-                          controller.userText.value = '';
-                          controller.userAnswer.value = '0';
-                        },
-                        textColor: Colors.white,
-                      );
-                    } else if (buttonText[index] == 'Del') {
-                      return MyButtons(
-                        buttonText: buttonText[index],
-                        onp: () {
-                          secretChatDetailsOpen(context);
-                          if (controller.userText.value.isNotEmpty) {
-                            controller.userText.value =
-                                controller.userText.value.substring(
-                                    0, controller.userText.value.length - 1);
-                          }
-                        },
-                        textColor: Colors.white,
-                      );
-                    } else if (buttonText[index] == '=' ||
-                        buttonText[index] == 'Ans') {
-                      return MyButtons(
-                        buttonText: buttonText[index],
-                        onp: () {
-                          controller.mathCal();
-                        },
-                        textColor: Colors.cyanAccent,
-                      );
-                    } else {
-                      return MyButtons(
-                          buttonText: buttonText[index],
-                          onp: () {
-                            controller.userText.value += buttonText[index];
-                          });
-                    }
-                  }),
-            ),
-          )
+                          controller.userText.value += buttonText[index];
+                        });
+                  }
+                }),
+          ),
         ],
       ),
     );

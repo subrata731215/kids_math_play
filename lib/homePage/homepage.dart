@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MyChip(
                 text: 'Calculator',
@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => CalculatorUi()));
                 },
               ),
+              const SizedBox(height: 20),
               // Lottie.asset(
               //   'assets/lottie/100_percent.json',
               //   fit: BoxFit.fill,
