@@ -15,7 +15,6 @@ class MathGameScreen extends ReactiveStateWidget<MathController> {
 
   const MathGameScreen({super.key});
 
-
   void buttonTapped(String button) {
     if (button.isEmpty) {
       controller.userAnswer.value = '?';
@@ -90,16 +89,9 @@ class MathGameScreen extends ReactiveStateWidget<MathController> {
             children: [
               Expanded(
                 child: Observer(
-                  listenable: controller.randMathBackImageNo,
-                  listener: (no) {
-                    return Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/math/back$no.jpg'),
-                              opacity: 0.3,
-                              fit: BoxFit.fill)),
-                      child: Column(
+                    listenable: controller.randMathBackImageNo,
+                    listener: (no) {
+                      return Column(
                         children: [
                           Observer(
                               listenable: controller.digit,
@@ -114,14 +106,10 @@ class MathGameScreen extends ReactiveStateWidget<MathController> {
                                       controller.digit.value = nVal!;
                                     },
                                     items: const [
-                                      DropdownMenuItem<int>(
-                                          value: 1, child: Text('Easy')),
-                                      DropdownMenuItem<int>(
-                                          value: 2, child: Text('Medium')),
-                                      DropdownMenuItem<int>(
-                                          value: 3, child: Text('Hard')),
-                                      DropdownMenuItem<int>(
-                                          value: 4, child: Text('Extreme')),
+                                      DropdownMenuItem<int>(value: 1, child: Text('Easy')),
+                                      DropdownMenuItem<int>(value: 2, child: Text('Medium')),
+                                      DropdownMenuItem<int>(value: 3, child: Text('Hard')),
+                                      DropdownMenuItem<int>(value: 4, child: Text('Extreme')),
                                     ],
                                   ),
                                 );
@@ -137,21 +125,16 @@ class MathGameScreen extends ReactiveStateWidget<MathController> {
                                     children: [
                                       Text(controller.firstNo.value.toString(),
                                           textAlign: TextAlign.center,
-                                          style: bottomTextTextStyle.copyWith(
-                                              fontSize: 30)),
+                                          style: bottomTextTextStyle.copyWith(fontSize: 30)),
                                       const SizedBox(width: 20),
                                       Text(controller.randMathSign(),
-                                          style: bottomTextTextStyle.copyWith(
-                                              fontSize: 30)),
+                                          style: bottomTextTextStyle.copyWith(fontSize: 30)),
                                       const SizedBox(width: 20),
                                       Text(controller.secondNo.value.toString(),
                                           textAlign: TextAlign.center,
-                                          style: bottomTextTextStyle.copyWith(
-                                              fontSize: 30)),
+                                          style: bottomTextTextStyle.copyWith(fontSize: 30)),
                                       const SizedBox(width: 20),
-                                      Text('=',
-                                          style: bottomTextTextStyle.copyWith(
-                                              fontSize: 30)),
+                                      Text('=', style: bottomTextTextStyle.copyWith(fontSize: 30)),
                                       const SizedBox(width: 20),
                                       Observer(
                                           listenable: controller.userAnswer,
@@ -159,13 +142,11 @@ class MathGameScreen extends ReactiveStateWidget<MathController> {
                                             return Flexible(
                                               child: Container(
                                                 padding: const EdgeInsets.all(10),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(10)),
+                                                decoration:
+                                                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                                 child: Text(answer,
                                                     textAlign: TextAlign.center,
-                                                    style: bottomTextTextStyle
-                                                        .copyWith(fontSize: 30)),
+                                                    style: bottomTextTextStyle.copyWith(fontSize: 30)),
                                               ),
                                             );
                                           }),
@@ -174,18 +155,14 @@ class MathGameScreen extends ReactiveStateWidget<MathController> {
                                 );
                               }),
                         ],
-                      ),
-                    );
-                  }
-                ),
+                      );
+                    }),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 2,
                 child: GridView.builder(
                     itemCount: mathButtonText.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
                     itemBuilder: (context, index) {
                       if (mathButtonText[index] == 'C') {
                         return MyButtons(
@@ -202,9 +179,8 @@ class MathGameScreen extends ReactiveStateWidget<MathController> {
                           textColor: Colors.red,
                           onp: () {
                             if (controller.userAnswer.value.isNotEmpty) {
-                              controller.userAnswer.value =
-                                  controller.userAnswer.value.substring(0,
-                                      controller.userAnswer.value.length - 1);
+                              controller.userAnswer.value = controller.userAnswer.value
+                                  .substring(0, controller.userAnswer.value.length - 1);
                             }
                             if (controller.userAnswer.value.isEmpty) {
                               controller.userAnswer.value = '?';
@@ -217,14 +193,13 @@ class MathGameScreen extends ReactiveStateWidget<MathController> {
                           textColor: Colors.cyan,
                           onp: () {
                             if (controller.userAnswer.value != '?') {
-                              controller.questionAnswerList.add(
-                                  QuestionAnswerModel(
-                                      firstNoo: controller.firstNo.value,
-                                      mathSign: controller.mathSign.value,
-                                      secondNoo: controller.secondNo.value,
-                                      answer: controller.userAnswer.value,
-                                      icon: checkedIcon(),
-                                      tileColor: tileColorChecked()));
+                              controller.questionAnswerList.add(QuestionAnswerModel(
+                                  firstNoo: controller.firstNo.value,
+                                  mathSign: controller.mathSign.value,
+                                  secondNoo: controller.secondNo.value,
+                                  answer: controller.userAnswer.value,
+                                  icon: checkedIcon(),
+                                  tileColor: tileColorChecked()));
 
                               shownDialog(context);
                               controller.randMathBack();
@@ -276,8 +251,7 @@ class MathGameScreen extends ReactiveStateWidget<MathController> {
       content: Center(
         child: Text(
           controller.ansCheck() ? 'CORRECT' : 'WRONG',
-          style: const TextStyle(
-              fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ),
     ));
